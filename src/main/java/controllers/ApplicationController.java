@@ -16,6 +16,8 @@
 
 package controllers;
 
+import models.Game;
+import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 
@@ -30,19 +32,41 @@ public class ApplicationController {
         return Results.html();
 
     }
-    
+
     public Result helloWorldJson() {
-        
+
         SimplePojo simplePojo = new SimplePojo();
         simplePojo.content = "Hello World! Hello Json!";
 
         return Results.json().render(simplePojo);
 
     }
-    
+
     public static class SimplePojo {
 
         public String content;
-        
+
+    }
+
+    public Result blackJack() {
+        return Results.html().template("views/BlackJack/BlackJack.flt.html");
+    }
+
+    public Result gameGet(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.dealTwo();
+
+        return Results.json().render(g);
+    }
+
+    public Result newGame(Context context, Game g) {
+
+        g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.dealTwo();
+        return Results.json().render(g);
     }
 }
