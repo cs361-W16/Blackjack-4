@@ -35,26 +35,42 @@ width: 500px;
 
 }
 
+#dealer {
+
+position: absolute;
+left: 42%;
+top: 0%;
+
+}
+
 #dealerSide {
 
 position: absolute;
-left: 21%;
-top: 0px;
+left: 12.5%;
+top: 5%;
+
+}
+
+#player {
+
+position: absolute;
+left: 42%;
+top: 92%;
 
 }
 
 #playerSide {
 
 position: absolute;
-left: 30%;
-top: 25%;
+left: 28%;
+top: 20%;
 
 }
 
 table {
 
     border-spacing: 5px 10px;
-float: left;
+    float: left;
 
 }
 
@@ -65,10 +81,10 @@ border: none;
 
 }
 
-td{
+.cardlocation td{
 
-width:  55px;
-height: 90px;
+height: 65px;
+width:  50px !important;
 text-align:center;
 
 }
@@ -79,10 +95,10 @@ font-weight: bold;
 
 .cardLocation{
 
-font-size: 70%;
-border: none;
-height: 55px;
-width: 40px;
+font-size: 60%;
+border: solid black 1px;
+height: 65px;
+width:50px !important;
 background-color:#F0F0F0;
 
 }

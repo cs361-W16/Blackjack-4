@@ -6,28 +6,28 @@
 
 <div id="box">
 
+    <span id="dealer"><h2>Dealer</h2></span>
+    <span id="player"><h2>Player</h2></span>
     <div id="betTable">
 
         <table id="dealerSide">
 
-            <tr class="title">
-                <td colspan="6"><h2>Dealer</h2></td>
-            </tr>
-
-            <tr>
-                <td class="cardLocation l0"></td>
-                <td class="cardLocation l1"></td>
-                <td class="cardLocation l2"></td>
-                <td class="cardLocation l3"></td>
-                <td class="cardLocation l4"></td>
-                <td class="cardLocation l5"></td>
-            </tr>
+            <td class="columnOfCards" id="c0">
+                <table>
+                    <td class="cardLocation l0"></td>
+                    <td class="cardLocation l1"></td>
+                    <td class="cardLocation l2"></td>
+                    <td class="cardLocation l3"></td>
+                    <td class="cardLocation l4"></td>
+                    <td class="cardLocation l5"></td>
+                </table>
+            </td>
 
         </table>
 
         <table id="playerSide">
 
-            <tr><td class="columnOfCards" id="c0">
+            <tr><td class="columnOfCards" id="c1">
                 <table>
                     <tr><td class="cardLocation l0"></td></tr>
                     <tr><td class="cardLocation l1"></td></tr>
@@ -39,18 +39,6 @@
                     <tr><td class="cardLocation l7"></td></tr>
                 </table>
             </td>
-                <td class="columnOfCards" id="c1">
-                    <table>
-                        <tr><td class="cardLocation l0"></td></tr>
-                        <tr><td class="cardLocation l1"></td></tr>
-                        <tr><td class="cardLocation l2"></td></tr>
-                        <tr><td class="cardLocation l3"></td></tr>
-                        <tr><td class="cardLocation l4"></td></tr>
-                        <tr><td class="cardLocation l5"></td></tr>
-                        <tr><td class="cardLocation l6"></td></tr>
-                        <tr><td class="cardLocation l7"></td></tr>
-                    </table>
-                </td>
                 <td class="columnOfCards" id="c2">
                     <table>
                         <tr><td class="cardLocation l0"></td></tr>
@@ -63,9 +51,18 @@
                         <tr><td class="cardLocation l7"></td></tr>
                     </table>
                 </td>
-            </tr>
-            <tr class="title">
-                <td colspan="6"><h2>Player</h2></td>
+                <td class="columnOfCards" id="c3">
+                    <table>
+                        <tr><td class="cardLocation l0"></td></tr>
+                        <tr><td class="cardLocation l1"></td></tr>
+                        <tr><td class="cardLocation l2"></td></tr>
+                        <tr><td class="cardLocation l3"></td></tr>
+                        <tr><td class="cardLocation l4"></td></tr>
+                        <tr><td class="cardLocation l5"></td></tr>
+                        <tr><td class="cardLocation l6"></td></tr>
+                        <tr><td class="cardLocation l7"></td></tr>
+                    </table>
+                </td>
             </tr>
         </table>
 
@@ -102,6 +99,9 @@ $( '.columnOfCards .cardLocation' ).html("");
         $( '#c1 .l'+key ).html(val.name + val.suit);
     });
 
+ $.each(game.cols[2], function( key, val ) {
+        $( '#c2 .l'+key ).html(val.name + val.suit);
+    });
  $.each(game.cols[2], function( key, val ) {
         $( '#c2 .l'+key ).html(val.name + val.suit);
     });
