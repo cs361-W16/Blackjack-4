@@ -1,51 +1,92 @@
+body {
+background-color: darkgreen;
+}
+
 h1 {
 
-text-align: center;
-color: purple;
+position: absolute;
+color: black;
+left: 10%;
+top: 35%;
 margin: 0 auto;
+font-size: 350%;
 
 }
 
-#location {
-
-color: purple;
-font-size: 300%;
-position: absolute;
-left: 20%;
-top: 20%;
+h2 {
 
 }
 
 #box {
 
-width: 750px;
 position: absolute;
-top: 5%;
-left: 37%;
+top: 2%;
+left: 35%;
 
+
+}
+
+#betTable {
+
+border-radius: 25%;
+background-color: #A5435C;
+height: 850px;
+width: 500px;
+
+}
+
+#dealer {
+
+position: absolute;
+left: 42%;
+top: 0%;
+
+}
+
+#dealerSide {
+
+position: absolute;
+left: 12.5%;
+top: 5%;
+
+}
+
+#player {
+
+position: absolute;
+left: 42%;
+top: 92%;
+
+}
+
+#playerSide {
+
+position: absolute;
+left: 28%;
+top: 20%;
 
 }
 
 table {
 
-float: left;
+    border-spacing: 5px 10px;
+    float: left;
 
-}
-
-td:nth-child(even) {
-    background-color: red;
 }
 
 tr{
+
 width:500px;
+border: none;
+
 }
 
-td{
-margin: 2px;
-border: 2px solid black;
-width:100px;
-height:45px;
+.cardlocation td{
+
+height: 65px;
+width:  50px !important;
 text-align:center;
+
 }
 
 .title{
@@ -53,20 +94,29 @@ font-weight: bold;
 }
 
 .cardLocation{
-border: none;
-width: 100px;
+
+font-size: 60%;
+border: solid black 1px;
+height: 65px;
+width:50px !important;
 background-color:#F0F0F0;
+
 }
 
 button {
-width: 60px;
-height: 30px;
+
+height: 25px;
+width: 100px;
+
 }
 
 #buttons {
 
 position: absolute;
-left: 60%;
+height: 300px;
+width: 200px;
+left: 67%;
+top: 40%;
 
 }
 
@@ -76,37 +126,7 @@ margin-top: 20px;
 
 }
 
-#Remove1 {
-
-margin-left: 30px !important;
-
-}
-
-#Remove2 {
-
-margin-left: 44px !important;
-
-}
-
-#Remove3 {
-
-margin-left: 46px !important;
-
-}
-
-#Remove4 {
-
-margin-left: 48px !important;
-
-}
-
 #newGameButton {
-
-margin-top: 420px;
-
-}
-
-#dealButton {
 margin-top: 52px;
 margin-bottom: 30px;
 width: 100px;
