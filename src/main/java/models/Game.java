@@ -16,11 +16,11 @@ public class Game {
     public int score_p1;
     public int score_p2;
     public int bet;
-    public Player player1;
+    public Dealer player1;
     public Customer player2;
 
     public Game(){
-        player1 = new Player();
+        player1 = new Dealer();
         player2 = new Customer();
         score_p1 = 0;
         score_p2 = 0;

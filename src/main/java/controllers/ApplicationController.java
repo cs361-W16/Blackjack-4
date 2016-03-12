@@ -72,8 +72,22 @@ public class ApplicationController {
     }
 
     public Result hit(Context context, @PathParam("hand") int handNumber, Game g) {
-        g.player2.hit(g.deck, handNumber);
-        g.score_p2 = g.player2.hand_value(handNumber);
+        //to avoid hit for empty hand
+        if (g.player2.hand.get(handNumber).size() > 1) {
+            g.player2.hit(g.deck, handNumber);
+            //score only display the first hand's value, may want to fix this later?
+            g.score_p2 = g.player2.hand_value(0);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result split(Context context, Game g) {
+        if(g.player2.hand_has_two_same_value()){
+            g.player2.split();
+        }
+        else {
+            System.out.println("You don't have two cards of same value");
+        }
         return Results.json().render(g);
     }
 }

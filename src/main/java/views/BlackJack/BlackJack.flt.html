@@ -78,11 +78,19 @@
     <p>
         <button id="hitButton">Hit</button>
     </p>
+
+    <p>
+        <button id="hitButton2">Hit for hand 2</button>
+    </p>
+
+    <p>
+        <button id="hitButton3">Hit for hand 3</button>
+    </p>
     <p>
         <button id="stay">Stay</button>
     </p>
     <p>
-        <button id="split">Split</button>
+        <button id="splitButton">Split</button>
     </p>
 </div>
 <script>
@@ -154,19 +162,26 @@ $("#hitButton").click(function(){
     hit_for_col(0);
 });
 
-$("#moveButton").click(function(){
-var colFrom = $("#from_col").val();
-var colTo = $("#to_col").val();
+
+$("#hitButton2").click(function(){
+    hit_for_col(1);
+});
+
+$("#hitButton3").click(function(){
+    hit_for_col(2);
+});
+
+$("#splitButton").click(function(){
 $.ajax({
   type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
+  url: "/split",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
 
   error: function (jqXHR) {
-        alert("You can't move card here!");
+        alert("You can't split");
   },
 
   contentType:"application/json; charset=utf-8",
