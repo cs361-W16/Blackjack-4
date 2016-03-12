@@ -73,7 +73,7 @@
     <button id="newGameButton">New Game</button>
 
     <p>
-        <button id="hit">Hit</button>
+        <button id="hitButton">Hit</button>
     </p>
     <p>
         <button id="stay">Stay</button>
@@ -91,19 +91,19 @@ console.log(game);
 
 $( '.columnOfCards .cardLocation' ).html("");
 
- $.each(game.cols[0], function( key, val ) {
+ $.each(game.player1.hand[0], function( key, val ) {
         $( '#c0 .l'+key ).html(val.name + val.suit);
     });
 
- $.each(game.cols[1], function( key, val ) {
+ $.each(game.player2.hand[0], function( key, val ) {
         $( '#c1 .l'+key ).html(val.name + val.suit);
     });
-
- $.each(game.cols[2], function( key, val ) {
+//code from AcesUp, need to change for split later
+ $.each(game.player2.hand[1], function( key, val ) {
         $( '#c2 .l'+key ).html(val.name + val.suit);
     });
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.name + val.suit);
+ $.each(game.player2.hand[2], function( key, val ) {
+        $( '#c3 .l'+key ).html(val.name + val.suit);
     });
 
 }
@@ -127,22 +127,26 @@ $.ajax({
 });
 
 //We should use this function to hit, just replace remove with it
-function hit(colNumber){
+function hit_for_col(handNumber){
 $.ajax({
 type: "POST",
-url: "/hit/"+colNumber,
+url: "/hit/"+handNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
 display(data);},
 error: function (jqXHR) {
-        alert("You busted! Play a new game.");
+        //alert("You busted! Play a new game.");
   },
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
 
 }
+
+$("#hitButton").click(function(){
+    hit_for_col(0);
+});
 
 $("#moveButton").click(function(){
 var colFrom = $("#from_col").val();

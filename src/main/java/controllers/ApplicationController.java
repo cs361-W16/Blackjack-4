@@ -22,6 +22,7 @@ import ninja.Result;
 import ninja.Results;
 
 import com.google.inject.Singleton;
+import ninja.params.PathParam;
 
 
 @Singleton
@@ -52,7 +53,7 @@ public class ApplicationController {
         return Results.html().template("views/BlackJack/BlackJack.flt.html");
     }
 
-    public Result gameGet(){
+    public Result gameGet() {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
@@ -62,10 +63,16 @@ public class ApplicationController {
     }
 
     public Result newGame(Context context, Game g) {
-
         g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.dealTwo();
+
+        return Results.json().render(g);
+    }
+
+    public Result hit(Context context, @PathParam("hand") int handNumber, Game g) {
+        //g.player2.hit(g.deck, handNumber);
         g.dealTwo();
         return Results.json().render(g);
     }
