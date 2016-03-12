@@ -72,8 +72,8 @@ public class ApplicationController {
     }
 
     public Result hit(Context context, @PathParam("hand") int handNumber, Game g) {
-        //g.player2.hit(g.deck, handNumber);
-        g.dealTwo();
+        g.player2.hit(g.deck, handNumber);
+        g.score_p2 = g.player2.hand_value(handNumber);
         return Results.json().render(g);
     }
 }

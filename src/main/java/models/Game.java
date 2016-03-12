@@ -16,12 +16,12 @@ public class Game {
     public int score_p1;
     public int score_p2;
     public int bet;
-    public Player player1 = new Player();
-    public Player player2 = new Player();
+    public Player player1;
+    public Customer player2;
 
     public Game(){
-        //player1 = new Player();
-        //player2 = new Player();
+        player1 = new Player();
+        player2 = new Customer();
         score_p1 = 0;
         score_p2 = 0;
         bet = 2;
@@ -29,8 +29,8 @@ public class Game {
 
     public void buildDeck() {
         String name;
-        for(int i = 2; i < 15; i++){
-            if (i == 14) name = "Ace ";
+        for(int i = 1; i < 14; i++){
+            if (i == 1) name = "Ace ";
             else if (i == 13) name = "King ";
             else if (i == 12) name = "Queen ";
             else if (i == 11) name = "Jack ";
@@ -54,7 +54,8 @@ public class Game {
             player1.hit(deck, 0);
             player2.hit(deck, 0);
         }
-
+        score_p1 = player1.hand_value(0);
+        score_p2 = player2.hand_value(0);
     }
 
 

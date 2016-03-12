@@ -3,6 +3,9 @@
 
 <body>
 <h1>Black <span style="color:red">Jack</span></h1>
+<p id="location">
+    Score: <span id="score">0</span>
+</p>
 
 <div id="box">
 
@@ -88,6 +91,9 @@ var game;
 
 function display(game) {
 console.log(game);
+
+$( '#score' ).html(game.score_p2);
+
 
 $( '.columnOfCards .cardLocation' ).html("");
 
