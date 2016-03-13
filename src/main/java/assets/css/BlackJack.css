@@ -143,3 +143,13 @@ width: 50px;
 position: absolute;
 margin-top: 400px;
 }
+
+#location {
+
+color: purple;
+font-size: 300%;
+position: absolute;
+left: 20%;
+top: 20%;
+
+}

@@ -11,16 +11,17 @@ public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    //public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
     public int score_p1;
     public int score_p2;
     public int bet;
-
+    public Dealer player1;
+    public Customer player2;
 
     public Game(){
-        cols.add(new ArrayList<Card>());
-        cols.add(new ArrayList<Card>());
+        player1 = new Dealer();
+        player2 = new Customer();
         score_p1 = 0;
         score_p2 = 0;
         bet = 2;
@@ -28,8 +29,8 @@ public class Game {
 
     public void buildDeck() {
         String name;
-        for(int i = 2; i < 15; i++){
-            if (i == 14) name = "Ace ";
+        for(int i = 1; i < 14; i++){
+            if (i == 1) name = "Ace ";
             else if (i == 13) name = "King ";
             else if (i == 12) name = "Queen ";
             else if (i == 11) name = "Jack ";
@@ -50,12 +51,11 @@ public class Game {
     //deal two cards for player and dealer initially
     public void dealTwo() {
         for(int i = 0; i < 2; i++){
-            cols.get(i).add(deck.get(deck.size()-1));
-            deck.remove(deck.size()-1);
-            cols.get(i).add(deck.get(deck.size()-1));
-            deck.remove(deck.size()-1);
+            player1.hit(deck, 0);
+            player2.hit(deck, 0);
         }
-
+        score_p1 = player1.hand_value(0);
+        score_p2 = player2.hand_value(0);
     }
 
 

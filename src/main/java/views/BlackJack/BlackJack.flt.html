@@ -3,6 +3,9 @@
 
 <body>
 <h1>Black <span style="color:red">Jack</span></h1>
+<p id="location">
+    Score: <span id="score">0</span>
+</p>
 
 <div id="box">
 
@@ -73,13 +76,21 @@
     <button id="newGameButton">New Game</button>
 
     <p>
-        <button id="hit">Hit</button>
+        <button id="hitButton">Hit</button>
+    </p>
+
+    <p>
+        <button id="hitButton2">Hit for hand 2</button>
+    </p>
+
+    <p>
+        <button id="hitButton3">Hit for hand 3</button>
     </p>
     <p>
         <button id="stay">Stay</button>
     </p>
     <p>
-        <button id="split">Split</button>
+        <button id="splitButton">Split</button>
     </p>
 </div>
 <script>
@@ -89,21 +100,24 @@ var game;
 function display(game) {
 console.log(game);
 
+$( '#score' ).html(game.score_p2);
+
+
 $( '.columnOfCards .cardLocation' ).html("");
 
- $.each(game.cols[0], function( key, val ) {
+ $.each(game.player1.hand[0], function( key, val ) {
         $( '#c0 .l'+key ).html(val.name + val.suit);
     });
 
- $.each(game.cols[1], function( key, val ) {
+ $.each(game.player2.hand[0], function( key, val ) {
         $( '#c1 .l'+key ).html(val.name + val.suit);
     });
-
- $.each(game.cols[2], function( key, val ) {
+//code from AcesUp, need to change for split later
+ $.each(game.player2.hand[1], function( key, val ) {
         $( '#c2 .l'+key ).html(val.name + val.suit);
     });
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.name + val.suit);
+ $.each(game.player2.hand[2], function( key, val ) {
+        $( '#c3 .l'+key ).html(val.name + val.suit);
     });
 
 }
@@ -127,16 +141,16 @@ $.ajax({
 });
 
 //We should use this function to hit, just replace remove with it
-function hit(colNumber){
+function hit_for_col(handNumber){
 $.ajax({
 type: "POST",
-url: "/hit/"+colNumber,
+url: "/hit/"+handNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
 display(data);},
 error: function (jqXHR) {
-        alert("You busted! Play a new game.");
+        //alert("You busted! Play a new game.");
   },
 contentType:"application/json; charset=utf-8",
 dataType:"json",
@@ -144,19 +158,30 @@ dataType:"json",
 
 }
 
-$("#moveButton").click(function(){
-var colFrom = $("#from_col").val();
-var colTo = $("#to_col").val();
+$("#hitButton").click(function(){
+    hit_for_col(0);
+});
+
+
+$("#hitButton2").click(function(){
+    hit_for_col(1);
+});
+
+$("#hitButton3").click(function(){
+    hit_for_col(2);
+});
+
+$("#splitButton").click(function(){
 $.ajax({
   type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
+  url: "/split",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
 
   error: function (jqXHR) {
-        alert("You can't move card here!");
+        alert("You can't split");
   },
 
   contentType:"application/json; charset=utf-8",
