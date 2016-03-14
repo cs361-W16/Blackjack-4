@@ -41,16 +41,16 @@ public class Customer extends Player {
     //allow 3 hand most
     public void split(){
         //copy to the 2nd hand
-        if (hand.get(1).size() == 0){
-            for (int i = 0; i < hand.get(0).size(); i++) {
-                hand.get(1).add(hand.get(0).get(i));
+            if (hand.get(1).size() == 0) {
+                for (int i = 0; i < hand.get(0).size(); i++) {
+                    hand.get(1).add(hand.get(0).get(i));
+                }
             }
-        }
-        //copy to the 3rd hand
-        else{
-            for (int i = 0; i < hand.get(0).size(); i++) {
-                hand.get(2).add(hand.get(0).get(i));
+            //copy to the 3rd hand
+            else if (hand.get(2).size() == 0) {
+                for (int i = 0; i < hand.get(0).size(); i++) {
+                    hand.get(2).add(hand.get(0).get(i));
+                }
             }
-        }
     }
 }

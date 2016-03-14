@@ -5,6 +5,10 @@
 <h1>Black <span style="color:red">Jack</span></h1>
 <p id="location">
     Score: <span id="score">0</span>
+    <br>
+
+    Win: <span id="winstate">0</span>
+
 </p>
 
 <div id="box">
@@ -87,7 +91,7 @@
         <button id="hitButton3">Hit for hand 3</button>
     </p>
     <p>
-        <button id="stay">Stay</button>
+        <button id="stayButton">Stay</button>
     </p>
     <p>
         <button id="splitButton">Split</button>
@@ -101,6 +105,7 @@ function display(game) {
 console.log(game);
 
 $( '#score' ).html(game.score_p2);
+$( '#winstate' ).html(game.winstate);
 
 
 $( '.columnOfCards .cardLocation' ).html("");
@@ -189,6 +194,24 @@ $.ajax({
 });
 });
 
+
+$("#stayButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/stay",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+
+  error: function (jqXHR) {
+        alert("You can't stay");
+  },
+
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
 
 </script>
 

@@ -36,6 +36,7 @@ public class Routes implements ApplicationRoutes {
 
         router.POST().route("/hit/{hand}").with(ApplicationController.class, "hit");
         router.POST().route("/split").with(ApplicationController.class, "split");
+        router.POST().route("/stay").with(ApplicationController.class, "stay");
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

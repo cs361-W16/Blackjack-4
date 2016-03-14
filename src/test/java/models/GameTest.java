@@ -61,9 +61,15 @@ public class GameTest {
         g.deck.add(new Card(6, Suit.Diamonds, " "));
         g.deck.add(new Card(10, Suit.Diamonds, " "));
         g.deck.add(new Card(6, Suit.Clubs, " "));
-        g.dealTwo();
-        g.dealerTurn();
-        assertEquals(1, g.winstate);
+        g.dealerHit();
+        assertEquals("In progress", g.winstate);
     }
 
+    @Test
+    public void testCheckWin(){
+        Game g = new Game();
+        g.buildDeck();
+        g.dealTwo();
+        assertEquals("In progress", g.winstate);
+    }
 }

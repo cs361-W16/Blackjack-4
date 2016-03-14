@@ -16,12 +16,11 @@
 
 package controllers;
 
+import com.google.inject.Singleton;
 import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
-
-import com.google.inject.Singleton;
 import ninja.params.PathParam;
 
 
@@ -74,7 +73,7 @@ public class ApplicationController {
     public Result hit(Context context, @PathParam("hand") int handNumber, Game g) {
         //to avoid hit for empty hand
         if (g.player2.hand.get(handNumber).size() > 1) {
-            g.player2.hit(g.deck, handNumber);
+            g.playerHit(handNumber);
             //score only display the first hand's value, may want to fix this later?
             g.score_p2 = g.player2.hand_value(0);
         }
@@ -82,11 +81,21 @@ public class ApplicationController {
     }
 
     public Result split(Context context, Game g) {
-        if(g.player2.hand_has_two_same_value()){
-            g.player2.split();
-        }
-        else {
-            System.out.println("You don't have two cards of same value");
+            if (g.player2.hand_has_two_same_value()) {
+                g.player2.split();
+            } else {
+                System.out.println("You don't have two cards of same value");
+            }
+
+        return Results.json().render(g);
+    }
+
+    public Result stay(Context context, Game g) {
+        if (g.score_p2 <= 21) {
+            while (g.score_p1 < 17) {
+                g.dealerHit();
+            }
+            g.checkWin();
         }
         return Results.json().render(g);
     }
