@@ -18,6 +18,7 @@ public class Game {
     public int bet;
     public Dealer player1;
     public Customer player2;
+    int winstate; //0 = in progress, 1 = win, 2 = loss, 3 = draw
 
     public Game(){
         player1 = new Dealer();
@@ -25,6 +26,7 @@ public class Game {
         score_p1 = 0;
         score_p2 = 0;
         bet = 2;
+        winstate = 0;
     }
 
     public void buildDeck() {
@@ -56,6 +58,35 @@ public class Game {
         }
         score_p1 = player1.hand_value(0);
         score_p2 = player2.hand_value(0);
+    }
+
+    public void checkWin() {
+        if (winstate == 0) {
+            if (score_p1 > score_p2) winstate = 2;
+            if (score_p2 > score_p1) winstate = 1;
+            if (score_p1 == score_p2) winstate = 3;
+        }
+    }
+
+    public void playerHit(int handnum){
+        if (winstate == 0) {
+            player2.hit(deck, handnum);
+            score_p2 = player2.hand_value(handnum);
+            if (score_p2 > 21) winstate = 2; //check for bust
+        }
+    }
+
+    public void dealerHit(){
+        player1.hit(deck, 0);
+        score_p1 = player1.hand_value(0);
+        if (score_p1 > 21) winstate = 1; //check for bust
+    }
+
+    public void dealerTurn() { //activated when player stands
+        while (score_p1 < 17) {
+            dealerHit();
+        }
+        checkWin();
     }
 
 

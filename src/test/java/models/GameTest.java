@@ -42,4 +42,28 @@ public class GameTest {
         assertEquals(2, g.player1.hand.get(0).size());
 
     }
+
+    @Test
+    public void testPlayerHit(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.dealTwo();
+        g.playerHit(0);
+        assertEquals(3, g.player2.hand.get(0).size());
+    }
+
+    @Test
+    public void testDealerTurn() {
+        Game g = new Game();
+        g.deck.add(new Card(10, Suit.Clubs, " "));
+        g.deck.add(new Card(10, Suit.Hearts, " "));
+        g.deck.add(new Card(6, Suit.Diamonds, " "));
+        g.deck.add(new Card(10, Suit.Diamonds, " "));
+        g.deck.add(new Card(6, Suit.Clubs, " "));
+        g.dealTwo();
+        g.dealerTurn();
+        assertEquals(1, g.winstate);
+    }
+
 }
